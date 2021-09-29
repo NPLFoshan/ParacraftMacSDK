@@ -1,1 +1,1 @@
-cmdline=noupdate="true" debug="main" mc="true" bootstrapper="script/apps/Aries/main_loop.lua" httpdebug="true" loadpackage="npl_packages/trunk/;" dev="/Users/{{username}}/Library/Containers/com.tatfook.paracraftmac/Data/Documents/Paracraft/files/"
+cmdline=noupdate="true" debug="main" mc="true" bootstrapper="script/apps/Aries/main_loop.lua" httpdebug="true" loadpackage="dev/trunk/;dev/WorldShare/;dev/ExplorerApp/" dev="/Users/{{username}}/Library/Containers/com.tatfook.paracraftmac/Data/Documents/Paracraft/files/"

@@ -27,9 +27,25 @@ fi
 
 if [ ! -f "$resource_path/config.txt" ]; then
     config_content=`cat $(dirname $0)/../config/DevConfig.txt`
-    config_content=`sed "s/{{username}}/"$machine_username"/" <<< $config_content`
+    config_content=`sed "s/{{username}}/"$machine_username"/" <<< "$config_content"`
 
     echo $config_content >> $resource_path/config.txt
+else
+    config_content=`cat $(dirname $0)/../config/DevConfig.txt`
+    config_content=`sed "s/{{username}}/"$machine_username"/" <<< "$config_content"`
+
+    old_config_content=`cat $resource_path/config.txt`
+
+    if [ "$config_content" != "$old_config_content" ]; then
+        rm -f "$resource_path/config.txt"
+
+        echo $config_content >> $resource_path/config.txt
+    fi
+fi
+
+if [ "$1" == "-a" ]; then
+    code $resource_path/dev
+    code $resource_path/log.txt
 fi
 
 open -a $application_path
