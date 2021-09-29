@@ -1,4 +1,6 @@
 #!/bin/bash
+# Author(s): big
+# CreateDate: 2021.9.29
 
 machine_username=$(whoami)
 resource_path=/Users/$machine_username/Library/Containers/com.tatfook.paracraftmac/Data/Documents/Paracraft/files
