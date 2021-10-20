@@ -6,7 +6,14 @@
 machine_username=$(whoami)
 resource_path=/Users/$machine_username/Library/Containers/com.tatfook.paracraftmac/Data/Documents/Paracraft/files
 application_path=/Applications/Paracraft.app
+config_file=""
 config_content=""
+
+if [ "$1" == "-h" ]; then
+    config_file="DevWithHttpDebugConfig.txt"
+else
+    config_file="DevConfig.txt"
+fi
 
 if [ ! -d "$application_path" ]; then
     echo "Paracraft is not installed"
@@ -29,12 +36,12 @@ else
 fi
 
 if [ ! -f "$resource_path/config.txt" ]; then
-    config_content=`cat $(dirname $0)/../config/DevConfig.txt`
+    config_content=`cat $(dirname $0)/../config/$config_file`
     config_content=`sed "s/{{username}}/"$machine_username"/" <<< "$config_content"`
 
     echo $config_content >> $resource_path/config.txt
 else
-    config_content=`cat $(dirname $0)/../config/DevConfig.txt`
+    config_content=`cat $(dirname $0)/../config/$config_file`
     config_content=`sed "s/{{username}}/"$machine_username"/" <<< "$config_content"`
 
     old_config_content=`cat $resource_path/config.txt`
