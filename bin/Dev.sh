@@ -10,7 +10,15 @@ config_file=""
 config_content=""
 
 if [ "$1" == "-h" ]; then
-    config_file="DevWithHttpDebugConfig.txt"
+    if [ "$2" == "-http_env" ]; then
+        if [ "$3" == "RELEASE" ]; then
+            config_file="DevRlsWithHttpDebugConfig.txt"
+        else
+            config_file="DevWithHttpDebugConfig.txt"  
+        fi
+    else
+        config_file="DevWithHttpDebugConfig.txt"
+    fi
 else
     config_file="DevConfig.txt"
 fi
