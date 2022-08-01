@@ -16,15 +16,15 @@ update_mod()
 
     if [ ! -d "$mod_root/$mod_name" ]; then
         if [ "$mod_name" == "WorldShare" ]; then
-            git clone git@github.com:tatfook/WorldShare.git $mod_root/$mod_name
+            git clone https://github.com/tatfook/WorldShare.git $mod_root/$mod_name
         fi
 
         if [ "$mod_name" == "ExplorerApp" ]; then
-            git clone git@github.com:tatfook/ExplorerApp.git $mod_root/$mod_name
+            git clone https://github.com/tatfook/ExplorerApp.git $mod_root/$mod_name
         fi
 
         if [ "$mod_name" == "DiffWorld" ]; then
-            git clone git@github.com:tatfook/DiffWorld.git $mod_root/$mod_name
+            git clone https://github.com/tatfook/DiffWorld.git $mod_root/$mod_name
         fi
 
         if [ "$mod_name" == "trunk" ]; then

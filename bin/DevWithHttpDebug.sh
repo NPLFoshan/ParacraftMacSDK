@@ -50,4 +50,6 @@ if [ "$1" == "-a" ]; then
     code $resource_path/log.txt
 fi
 
+pkill Paracraft
+pkill Paracraft
 open -a $application_path

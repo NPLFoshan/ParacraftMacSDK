@@ -34,4 +34,6 @@ if [ ! -f "$resource_path/config.txt" ]; then
     echo $config_content >> $resource_path/config.txt
 fi
 
+pkill Paracraft
+pkill Paracraft
 open -a $application_path

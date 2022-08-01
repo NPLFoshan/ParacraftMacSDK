@@ -8,6 +8,7 @@ resource_path=/Users/$machine_username/Library/Containers/com.tatfook.paracraftm
 application_path=/Applications/Paracraft.app
 config_file=""
 config_content=""
+env="ONLINE"
 
 if [ "$1" == "-h" ]; then
     if [ "$2" == "-http_env" ]; then
@@ -21,6 +22,10 @@ if [ "$1" == "-h" ]; then
     fi
 else
     config_file="DevConfig.txt"
+fi
+
+if [ "$2" == "STAGE" ]; then
+    env="STAGE"
 fi
 
 if [ ! -d "$application_path" ]; then
@@ -43,28 +48,19 @@ else
     fi
 fi
 
-if [ ! -f "$resource_path/config.txt" ]; then
-    config_content=`cat $(dirname $0)/../config/$config_file`
-    config_content=`sed "s/{{username}}/"$machine_username"/" <<< "$config_content"`
+config_content=`cat $(dirname $0)/../config/$config_file`
+config_content=`sed "s/{{username}}/"$machine_username"/" <<< "$config_content"`
+config_content=$config_content" http_env=\""$env"\""
 
-    echo $config_content >> $resource_path/config.txt
-else
-    config_content=`cat $(dirname $0)/../config/$config_file`
-    config_content=`sed "s/{{username}}/"$machine_username"/" <<< "$config_content"`
+rm -f "$resource_path/config.txt"
 
-    old_config_content=`cat $resource_path/config.txt`
-
-    if [ "$config_content" != "$old_config_content" ]; then
-        rm -f "$resource_path/config.txt"
-
-        echo $config_content >> $resource_path/config.txt
-    fi
-fi
+echo $config_content >> $resource_path/config.txt
 
 if [ "$1" == "-a" ]; then
     code $resource_path/dev
     code $resource_path/log.txt
 fi
 
+pkill Paracraft
 pkill Paracraft
 open -a $application_path
