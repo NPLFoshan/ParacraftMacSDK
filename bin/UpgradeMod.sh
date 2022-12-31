@@ -16,7 +16,7 @@ update_mod()
 
     if [ ! -d "$mod_root/$mod_name" ]; then
         if [ "$mod_name" == "WorldShare" ]; then
-            git clone git@github.com:tatfook/WorldShare.git $mod_root/$mod_name
+            git clone ssh://git@code.kp-para.cn:10022/paracraft/worldshare.git $mod_root/$mod_name
         fi
 
         if [ "$mod_name" == "ExplorerApp" ]; then
@@ -28,17 +28,13 @@ update_mod()
         fi
 
         if [ "$mod_name" == "trunk" ]; then
-            svn co svn://svn.paraengine.com/script/trunk $mod_root/$mod_name
+            git clone ssh://git@code.kp-para.cn:10022/paracraft/paracraft_script.git $mod_root/$mod_name
         fi
     fi
 
     pushd $mod_root/$mod_name
 
-    if [ "$mod_name" == "trunk" ]; then
-        svn up .
-    else
-        git pull --rebase
-    fi
+    git pull --rebase
     
     popd
 }
