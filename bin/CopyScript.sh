@@ -51,6 +51,10 @@ popd
 
 sleep 5
 
+if [ -f "$files_path/config.txt.1" ]; then
+	mv $files_path/config.txt.1 $files_path/config.txt
+fi
+
 cp $dev_path/main.pkg $dest_path/
 rm $dev_path/main.pkg
 rm -r $dest_path/npl_packages/ParacraftBuildinMod.zip
