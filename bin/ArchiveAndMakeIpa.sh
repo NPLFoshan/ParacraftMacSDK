@@ -22,7 +22,7 @@ sshpass -p $password ssh big@10.8.0.2 -p 10022 "cd ~;./UpToFtp.sh $ipaName"
 
 popd
 
-rm "$ipaFolderPath""$ipaName"
+# rm "$ipaFolderPath""$ipaName"
 rm $ipaFolderPath"Packaging.log"
 rm $ipaFolderPath"DistributionSummary.plist"
 
