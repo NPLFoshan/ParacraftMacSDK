@@ -14,10 +14,9 @@ xcodebuild -exportArchive -archivePath $archivePath -exportPath $ipaFolderPath -
 
 mv $ipaFolderPath"Paracraft.ipa" "$ipaFolderPath""$ipaName"
 
-rm "$ipaFolderPath""$ipaName"
 rm $ipaFolderPath"Packaging.log"
 rm $ipaFolderPath"DistributionSummary.plist"
-rm $ipaFolderPath"Paracraft.xcarchive"
+rm -r $ipaFolderPath"Paracraft.xcarchive"
 # mv $ipaFolderPath"Paracraft.xcarchive" $ipaFolderPath"Paracraft-"$timeName".xcarchive" 
 
 echo "build name: "$ipaName
