@@ -9,6 +9,12 @@ pkgFolderPath=/Volumes/CODE/MacArchive/
 timeName=`date "+%Y-%m-%d-%H-%M-%S"`
 pkgName=Paracraft-$timeName.pkg
 
+pushd /Volumes/CODE/NPLRuntimeCI
+
+git pull origin platform --rebase
+
+popd
+
 xcodebuild -project $projectPath -scheme Paracraft -archivePath $archivePath archive
 xcodebuild -exportArchive -archivePath $archivePath -exportPath $pkgFolderPath -exportOptionsPlist $exportOptions
 

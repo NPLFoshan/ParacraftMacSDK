@@ -9,6 +9,12 @@ ipaFolderPath=/Volumes/CODE/iOSArchive/
 timeName=`date "+%Y-%m-%d-%H-%M-%S"`
 ipaName=Paracraft-$timeName.ipa
 
+pushd /Volumes/CODE/NPLRuntimeCI
+
+git pull origin platform --rebase
+
+popd
+
 xcodebuild -project $projectPath -scheme Paracraft -archivePath $archivePath archive
 xcodebuild -exportArchive -archivePath $archivePath -exportPath $ipaFolderPath -exportOptionsPlist $exportOptions
 
