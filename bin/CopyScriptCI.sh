@@ -25,4 +25,6 @@ result=`curl http://10.8.0.2/coredownload/version.txt |
         sed "s/<UpdateVersion>//i" |
         sed "s/<\/UpdateVersion>//i" |
         sed "s/\r\n//i"`
-echo $result >> $dest_path/version.txt
+result="ver="$result
+
+echo $result | sed 's/ //g' >> $dest_path/version.txt
