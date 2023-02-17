@@ -1,6 +1,7 @@
 #!/bin/bash
 
 platform=$1
+ver=$2
 runtime_path=/Volumes/CODE # change to your project folder
 
 if [ "$1" == "mac" ]; then
@@ -20,11 +21,16 @@ curl -o $dest_path/main.pkg http://10.8.0.2/main.pkg
 curl -o $dest_path/main150727.pkg http://10.8.0.2/main150727.pkg
 curl -o $dest_path/assets_manifest.txt http://10.8.0.2/assets_manifest.txt._P_E_0
 
-result=`curl http://10.8.0.2/coredownload/version.txt |
+if [ -z $ver ]; then
+    result=`curl http://10.8.0.2/coredownload/version.txt |
         sed -n "/<UpdateVersion>/,/<\/UpdateVersion>/p" |
         sed "s/<UpdateVersion>//i" |
         sed "s/<\/UpdateVersion>//i" |
         sed "s/\r\n//i"`
-result="ver="$result
+    result="ver="$result
 
-echo $result | sed 's/ //g' >> $dest_path/version.txt
+    echo $result | sed 's/ //g' >> $dest_path/version.txt
+else
+    echo "ver="$ver >> $dest_path/version.txt
+fi
+
