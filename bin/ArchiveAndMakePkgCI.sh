@@ -2,12 +2,23 @@
 # Author(s): big
 # CreateDate: 2023.2.10
 
+dev=$1
+
 projectPath=/Volumes/CODE/NPLRuntimeCI/NPLRuntime/BuildPlatform/mac/NPLRuntime.xcodeproj
 archivePath=/Volumes/CODE/MacArchive/Paracraft.xcarchive
 exportOptions=/Volumes/CODE/MacArchive/ExportOptions.plist
 pkgFolderPath=/Volumes/CODE/MacArchive/
+dest_path=/Volumes/CODE/NPLRuntimeCI/NPLRuntime/Platform/OSX/assets 
 timeName=`date "+%Y-%m-%d-%H-%M-%S"`
-pkgName=Paracraft-$timeName.pkg
+
+ver=`cat $dest_path/version.txt | sed 's/ver=//g'`
+verStr=$ver"-"
+
+if [ "$dev" == "true" ]; then
+    devStr="dev-"
+fi
+
+pkgName=Paracraft-$devStr$verStr$timeName.pkg
 
 pushd /Volumes/CODE/NPLRuntimeCI
 git stash

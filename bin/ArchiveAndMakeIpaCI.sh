@@ -3,13 +3,31 @@
 # CreateDate: 2023.2.27
 
 resign=$1
+dev=$2
 
 projectPath=/Volumes/CODE/NPLRuntimeCI/NPLRuntime/BuildPlatform/iOS/NPLRuntime.xcodeproj
 archivePath=/Volumes/CODE/iOSArchive/Paracraft.xcarchive
 exportOptions=/Volumes/CODE/iOSArchive/ExportOptions.plist
 ipaFolderPath=/Volumes/CODE/iOSArchive/
+dest_path=/Volumes/CODE/NPLRuntimeCI/NPLRuntime/Platform/iOS/assets 
 timeName=`date "+%Y-%m-%d-%H-%M-%S"`
-ipaName=Paracraft-$timeName.ipa
+
+ver=`cat $dest_path/version.txt | sed 's/ver=//g'`
+verStr=$ver"-"
+
+resigned=""
+
+if [ "$resign" == "true" ]; then
+    resigned="resigned-"
+fi
+
+devStr=""
+
+if [ "$dev" == "true" ]; then
+    devStr="dev-"
+fi
+
+ipaName=Paracraft-$resigned$devStr$verStr$timeName.ipa
 
 pushd /Volumes/CODE/NPLRuntimeCI
 git stash
@@ -19,13 +37,6 @@ popd
 
 xcodebuild -project $projectPath -scheme Paracraft -archivePath $archivePath archive
 xcodebuild -exportArchive -archivePath $archivePath -exportPath $ipaFolderPath -exportOptionsPlist $exportOptions
-
-# echo $1
-# if [ "$1" == "true" ]; then
-#     # sudo gem install fastlane
-#     echo "resign ipa"
-#     fastlane sigh resign $ipaFolderPath"Paracraft.ipa" --signing_identity "iPhone Distribution: Shenzhen Tatfook Network Co., Ltd. (3FHAD7P7A5)" -p "$ipaFolderPath/2022022301.mobileprovision"
-# fi
 
 mv $ipaFolderPath"Paracraft.ipa" "$ipaFolderPath""$ipaName"
 
