@@ -23,7 +23,7 @@ curl -o $dest_path/assets_manifest.txt http://10.8.0.2/assets_manifest.txt._P_E_
 
 if [ "$dev" == "true" ]; then
     echo download dev
-    curl -o $dest_path/main_dev.pkg http://10.8.0.2/main150727.pkg
+    curl -o $dest_path/main150727.pkg http://10.8.0.2/main_dev.pkg
 else
     echo download master
     curl -o $dest_path/main150727.pkg http://10.8.0.2/main150727.pkg
