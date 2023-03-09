@@ -10,9 +10,9 @@ timeName=`date "+%Y-%m-%d-%H-%M-%S"`
 pkgName=Paracraft-$timeName.pkg
 
 pushd /Volumes/CODE/NPLRuntimeCI
-
-git pull origin platform --rebase
-
+git stash
+git pull lixizhi cp_old --rebase
+got stash pop
 popd
 
 xcodebuild -project $projectPath -scheme Paracraft -archivePath $archivePath archive

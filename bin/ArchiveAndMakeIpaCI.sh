@@ -12,20 +12,20 @@ timeName=`date "+%Y-%m-%d-%H-%M-%S"`
 ipaName=Paracraft-$timeName.ipa
 
 pushd /Volumes/CODE/NPLRuntimeCI
-
-git pull origin platform --rebase
-
+git stash
+git pull lixizhi cp_old --rebase
+git stash pop
 popd
 
 xcodebuild -project $projectPath -scheme Paracraft -archivePath $archivePath archive
 xcodebuild -exportArchive -archivePath $archivePath -exportPath $ipaFolderPath -exportOptionsPlist $exportOptions
 
-if [ "$1" == "true" ]; then
-    # sudo gem install fastlane
-    fastlane sigh resign $ipaFolderPath"Paracraft.ipa" \
-    --signing_identity "iPhone Distribution: Shenzhen Tatfook Network Co., Ltd. (3FHAD7P7A5)" \
-    -p "$ipaFolderPath/2022022301.mobileprovision"
-fi
+# echo $1
+# if [ "$1" == "true" ]; then
+#     # sudo gem install fastlane
+#     echo "resign ipa"
+#     fastlane sigh resign $ipaFolderPath"Paracraft.ipa" --signing_identity "iPhone Distribution: Shenzhen Tatfook Network Co., Ltd. (3FHAD7P7A5)" -p "$ipaFolderPath/2022022301.mobileprovision"
+# fi
 
 mv $ipaFolderPath"Paracraft.ipa" "$ipaFolderPath""$ipaName"
 
