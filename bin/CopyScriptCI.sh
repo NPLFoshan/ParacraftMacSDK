@@ -2,9 +2,10 @@
 
 platform=$1
 ver=$2
+dev=$3
 runtime_path=/Volumes/CODE # change to your project folder
 
-if [ "$1" == "mac" ]; then
+if [ "$platform" == "mac" ]; then
     dest_path=$runtime_path/NPLRuntimeCI/NPLRuntime/Platform/OSX/assets 
 else
     dest_path=$runtime_path/NPLRuntimeCI/NPLRuntime/Platform/iOS/assets 
@@ -18,8 +19,15 @@ rm -r $dest_path/version.txt
 
 curl -o $dest_path/npl_packages/ParacraftBuildinMod.zip http://10.8.0.2/ParacraftBuildinMod.zip
 curl -o $dest_path/main.pkg http://10.8.0.2/main.pkg
-curl -o $dest_path/main150727.pkg http://10.8.0.2/main150727.pkg
 curl -o $dest_path/assets_manifest.txt http://10.8.0.2/assets_manifest.txt._P_E_0
+
+if [ "$dev" == "true" ]; then
+    echo download dev
+    curl -o $dest_path/main_dev.pkg http://10.8.0.2/main150727.pkg
+else
+    echo download master
+    curl -o $dest_path/main150727.pkg http://10.8.0.2/main150727.pkg
+fi
 
 if [ -z $ver ]; then
     result=`curl http://10.8.0.2/coredownload/version.txt |
@@ -33,4 +41,3 @@ if [ -z $ver ]; then
 else
     echo "ver="$ver >> $dest_path/version.txt
 fi
-
