@@ -17,6 +17,7 @@ update_mod()
     if [ ! -d "$mod_root/$mod_name" ]; then
         if [ "$mod_name" == "WorldShare" ]; then
             git clone ssh://git@code.kp-para.cn:10022/paracraft/worldshare.git $mod_root/$mod_name
+            git checkout dev
         fi
 
         if [ "$mod_name" == "ExplorerApp" ]; then
