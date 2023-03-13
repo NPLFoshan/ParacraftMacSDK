@@ -3,6 +3,7 @@
 # CreateDate: 2023.2.10
 
 dev=$1
+http_env=$2
 
 projectPath=/Volumes/CODE/NPLRuntimeCI/NPLRuntime/BuildPlatform/mac/NPLRuntime.xcodeproj
 archivePath=/Volumes/CODE/MacArchive/Paracraft.xcarchive
@@ -18,7 +19,15 @@ if [ "$dev" == "true" ]; then
     devStr="dev-"
 fi
 
-pkgName=Paracraft-$devStr$verStr$timeName.pkg
+httpEnvStr=""
+
+if [ "$http_env" == "RELEASE" ]; then
+    httpEnvStr="apirls-"
+elif [ "$http_env" == "STAGE" ]; then
+    httpEnvStr="apidev-"
+fi
+
+pkgName=Paracraft-$devStr$verStr$httpEnvStr$timeName.pkg
 
 pushd /Volumes/CODE/NPLRuntimeCI
 git stash

@@ -3,6 +3,7 @@
 platform=$1
 ver=$2
 dev=$3
+http_env=$4
 runtime_path=/Volumes/CODE # change to your project folder
 
 if [ "$platform" == "mac" ]; then
@@ -16,6 +17,7 @@ rm -r $dest_path/main.pkg
 rm -r $dest_path/main150727.pkg
 rm -r $dest_path/assets_manifest.txt
 rm -r $dest_path/version.txt
+rm -r $dest_path/config.txt
 
 curl -o $dest_path/npl_packages/ParacraftBuildinMod.zip http://10.8.0.2/ParacraftBuildinMod.zip
 curl -o $dest_path/main.pkg http://10.8.0.2/main.pkg
@@ -41,3 +43,13 @@ if [ -z $ver ]; then
 else
     echo "ver="$ver >> $dest_path/version.txt
 fi
+
+config='cmdline=noupdate="true" debug="main" mc="true" bootstrapper="script/apps/Aries/main_loop.lua"'
+
+if [ "$http_env" == "RELEASE" ]; then
+    config=$config' http_env="RELEASE"'
+elif [ "$http_env" == "STAGE" ]; then
+    config=$config' http_env="STAGE"'
+fi
+
+echo $config >> $dest_path/config.txt

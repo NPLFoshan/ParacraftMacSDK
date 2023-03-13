@@ -4,6 +4,7 @@
 
 resign=$1
 dev=$2
+http_env=$3
 
 projectPath=/Volumes/CODE/NPLRuntimeCI/NPLRuntime/BuildPlatform/iOS/NPLRuntime.xcodeproj
 archivePath=/Volumes/CODE/iOSArchive/Paracraft.xcarchive
@@ -27,7 +28,15 @@ if [ "$dev" == "true" ]; then
     devStr="dev-"
 fi
 
-ipaName=Paracraft-$resigned$devStr$verStr$timeName.ipa
+httpEnvStr=""
+
+if [ "$http_env" == "RELEASE" ]; then
+    httpEnvStr="apirls-"
+elif [ "$http_env" == "STAGE" ]; then
+    httpEnvStr="apidev-"
+fi
+
+ipaName=Paracraft-$resigned$devStr$httpEnvStr$verStr$timeName.ipa
 
 pushd /Volumes/CODE/NPLRuntimeCI
 git stash
