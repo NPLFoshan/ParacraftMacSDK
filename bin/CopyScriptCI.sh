@@ -19,16 +19,17 @@ rm -r $dest_path/assets_manifest.txt
 rm -r $dest_path/version.txt
 rm -r $dest_path/config.txt
 
-curl -o $dest_path/npl_packages/ParacraftBuildinMod.zip http://10.8.0.2/ParacraftBuildinMod.zip
 curl -o $dest_path/main.pkg http://10.8.0.2/main.pkg
 curl -o $dest_path/assets_manifest.txt http://10.8.0.2/assets_manifest.txt._P_E_0
 
 if [ "$dev" == "true" ]; then
     echo download dev
     curl -o $dest_path/main150727.pkg http://10.8.0.2/main_dev.pkg
+    curl -o $dest_path/npl_packages/ParacraftBuildinMod.zip http://10.8.0.2/ParacraftBuildinMod_dev.zip
 else
     echo download master
     curl -o $dest_path/main150727.pkg http://10.8.0.2/main150727.pkg
+    curl -o $dest_path/npl_packages/ParacraftBuildinMod.zip http://10.8.0.2/ParacraftBuildinMod.zip
 fi
 
 if [ -z $ver ]; then
