@@ -4,7 +4,14 @@ platform=$1
 ver=$2
 dev=$3
 http_env=$4
+is_papa_adventure=$5
 runtime_path=/Volumes/CODE # change to your project folder
+
+echo platform:$platform;
+echo ver:$ver;
+echo dev:$dev;
+echo http_env:$http_env;
+echo is_papa_adventure:$is_papa_adventure;
 
 if [ "$platform" == "mac" ]; then
     dest_path=$runtime_path/NPLRuntimeCI/NPLRuntime/Platform/OSX/assets 
@@ -52,5 +59,11 @@ if [ "$http_env" == "RELEASE" ]; then
 elif [ "$http_env" == "STAGE" ]; then
     config=$config' http_env="STAGE"'
 fi
+
+if [ "$is_papa_adventure" == "true" ]; then
+    config=$config' http_env="STAGE" channelId="tutorial" isDevMode="true"'
+fi
+
+echo $config;
 
 echo $config >> $dest_path/config.txt

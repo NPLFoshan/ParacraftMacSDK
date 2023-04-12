@@ -62,5 +62,7 @@ if [ "$1" == "-a" ]; then
 fi
 
 pkill Paracraft
+sleep 0.5
 pkill Paracraft
+sleep 0.5
 open -a $application_path
