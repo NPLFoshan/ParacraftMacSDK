@@ -59,11 +59,11 @@ cp $dev_path/main.pkg $dest_path/
 rm $dev_path/main.pkg
 rm -r $dest_path/npl_packages/ParacraftBuildinMod.zip
 
-rm -r $paracraft_build_in_mod_path/npl_packages/WorldShare/Mod
-rm -r $paracraft_build_in_mod_path/npl_packages/ExplorerApp/Mod
+# rm -r $paracraft_build_in_mod_path/npl_packages/WorldShare/Mod
+# rm -r $paracraft_build_in_mod_path/npl_packages/ExplorerApp/Mod
 
-cp -r $dev_path/WorldShare/Mod $paracraft_build_in_mod_path/npl_packages/WorldShare
-cp -r $dev_path/ExplorerApp/Mod $paracraft_build_in_mod_path/npl_packages/ExplorerApp
+# cp -r $dev_path/WorldShare/Mod $paracraft_build_in_mod_path/npl_packages/WorldShare
+# cp -r $dev_path/ExplorerApp/Mod $paracraft_build_in_mod_path/npl_packages/ExplorerApp
 
 pushd $paracraft_build_in_mod_path
 bash ./build_without_update.sh
