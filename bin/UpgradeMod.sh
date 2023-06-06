@@ -15,14 +15,14 @@ update_mod()
     echo $mod_name
 
     if [ ! -d "$mod_root/$mod_name" ]; then
-        if [ "$mod_name" == "WorldShare" ]; then
-            git clone ssh://git@code.kp-para.cn:10022/paracraft/worldshare.git $mod_root/$mod_name
-            git checkout dev
-        fi
+        # if [ "$mod_name" == "WorldShare" ]; then
+        #     git clone ssh://git@code.kp-para.cn:10022/paracraft/worldshare.git $mod_root/$mod_name
+        #     git checkout dev
+        # fi
 
-        if [ "$mod_name" == "ExplorerApp" ]; then
-            git clone git@github.com:tatfook/ExplorerApp.git $mod_root/$mod_name
-        fi
+        # if [ "$mod_name" == "ExplorerApp" ]; then
+        #     git clone git@github.com:tatfook/ExplorerApp.git $mod_root/$mod_name
+        # fi
 
         if [ "$mod_name" == "DiffWorld" ]; then
             git clone git@github.com:tatfook/DiffWorld.git $mod_root/$mod_name
