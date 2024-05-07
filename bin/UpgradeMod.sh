@@ -1,6 +1,7 @@
 #!/bin/bash
 # Author(s): big
 # CreateDate: 2021.9.29
+# ModifyDate: 2024.5.7
 
 machine_username=$(whoami)
 resource_path=/Users/$machine_username/Library/Containers/com.tatfook.paracraftmac/Data/Documents/Paracraft/files
@@ -24,12 +25,12 @@ update_mod()
         #     git clone git@github.com:tatfook/ExplorerApp.git $mod_root/$mod_name
         # fi
 
-        if [ "$mod_name" == "DiffWorld" ]; then
-            git clone git@github.com:tatfook/DiffWorld.git $mod_root/$mod_name
-        fi
+        # if [ "$mod_name" == "DiffWorld" ]; then
+        #     git clone git@github.com:tatfook/DiffWorld.git $mod_root/$mod_name
+        # fi
 
         if [ "$mod_name" == "trunk" ]; then
-            git clone ssh://git@code.kp-para.cn:10022/paracraft/paracraft_script.git $mod_root/$mod_name
+            git clone https://code.kp-para.cn/paracraft/paracraft_script.git $mod_root/$mod_name
         fi
     fi
 
